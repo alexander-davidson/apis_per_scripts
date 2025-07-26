@@ -14,7 +14,7 @@
 int number_of_rings = 1;
 
 // define how many LEDs there are in each
-int number_of_leds = 32;
+int number_of_leds = 14;
 
 // number of pixels (i.e. LEDs in ring, put number of LEDs in array times number arrays)
 #define NUMPIXELS number_of_leds * number_of_rings
