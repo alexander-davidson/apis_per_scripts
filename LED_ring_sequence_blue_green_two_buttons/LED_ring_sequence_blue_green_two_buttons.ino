@@ -25,9 +25,15 @@ Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ80
 int ring_button = 8;
 
 // set the value for duration of each colour
-int del_val = 2000;
+unsigned long del_val = 5000;
 
-int reward_del_val = 3000;
+unsigned long reward_del_val = 3000;
+
+unsigned long acclimation_delay = 15000;
+
+unsigned long stick_delay = 10000;
+
+unsigned long rest_delay = 10000;
 
 // for while loop to turn of colours until button press
 bool running = true;
@@ -84,11 +90,19 @@ void loop() {
   // before you can trigger the LEDs
   if (ring >= 0){
     if (col_button_state == HIGH){
+
+      // indicator on for 15s
+      digitalWrite(redled, HIGH);
+      delay(acclimation_delay);
+      // 10s off everything
+      digitalWrite(redled, LOW);
+      delay(stick_delay);
+
       pixels.fill(pixels.Color(0, 0, 255/4), ring, number_of_leds);
       // sends colour info to LEDs to be displayed
       pixels.show();
 
-      delay(del_val + reward_del_val);
+      delay(del_val);
 
       // IMPORTANT!! The reward_del_val is the time to deliver reward. In the Lichtenstein
       // paper they used single colour. For example, in a 10 second stimulus, the light
@@ -104,16 +118,32 @@ void loop() {
       digitalWrite(redled, HIGH);
       delay(reward_del_val);
       digitalWrite(obled, !digitalRead(obled));
+
+      pixels.fill(pixels.Color(0, 0, 0), ring, number_of_leds);
+      pixels.show();
+      digitalWrite(redled, LOW);
+
+      delay(rest_delay);
+      digitalWrite(redled, HIGH);
+      delay(500);
       digitalWrite(redled, LOW);
     }
     else if (col_button_state == LOW){
+
+      // indicator on for 15s
+      digitalWrite(redled, HIGH);
+      delay(acclimation_delay);
+      // 10s off everything
+      digitalWrite(redled, LOW);
+      delay(stick_delay);
+
       pixels.fill(pixels.Color(0, 255/4, 0), ring, number_of_leds);
       
       pixels.show();
 
-      delay(del_val + reward_del_val);
+      delay(del_val);
 
-      pixels.fill(pixels.Color(0, 255, 0/4), ring, number_of_leds);
+      pixels.fill(pixels.Color(0, 0, 255/4), ring, number_of_leds);
       pixels.show();
       delay(del_val);
 
@@ -121,6 +151,14 @@ void loop() {
       digitalWrite(redled, HIGH);
       delay(reward_del_val);
       digitalWrite(obled, !digitalRead(obled));
+
+      pixels.fill(pixels.Color(0, 0, 0), ring, number_of_leds);
+      pixels.show();
+      digitalWrite(redled, LOW);
+
+      delay(rest_delay);
+      digitalWrite(redled, HIGH);
+      delay(500);
       digitalWrite(redled, LOW);
     }
   }
