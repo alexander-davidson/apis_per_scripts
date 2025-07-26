@@ -26,7 +26,7 @@ Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ80
 int ring_button = 8;
 
 // set the value for duration of each colour (for single colour it is doubled below)
-unsigned long del_val = 2500;
+unsigned long del_val = 5000;
 
 unsigned long reward_del_val = 3000;
 
@@ -99,11 +99,11 @@ void loop() {
       digitalWrite(redled, LOW);
       delay(stick_delay);
 
-      pixels.fill(pixels.Color(0, 0, 255), ring, number_of_leds);
+      pixels.fill(pixels.Color(0, 0, 255/4), ring, number_of_leds);
       // sends colour info to LEDs to be displayed
       pixels.show();
 
-      delay(del_val*2);
+      delay(del_val);
 
       // IMPORTANT!! The reward_del_val is the time to deliver reward. In the Lichtenstein
       // paper they used single colour. For example, in a 10 second stimulus, the light
@@ -111,9 +111,9 @@ void loop() {
       // However, since we are using two colours, I have set the delay + reward_del_val
       // so that both colours show for the same amount of time
 
-      pixels.fill(pixels.Color(0, 0, 255), ring, number_of_leds);
+      pixels.fill(pixels.Color(0, 0, 255/4), ring, number_of_leds);
       pixels.show();
-      delay(del_val*2);
+      delay(del_val);
 
       digitalWrite(obled, !digitalRead(obled));
       digitalWrite(redled, HIGH);
@@ -139,15 +139,15 @@ void loop() {
       digitalWrite(redled, LOW);
       delay(stick_delay);
 
-      pixels.fill(pixels.Color(0, 255, 0), ring, number_of_leds);
+      pixels.fill(pixels.Color(0, 255/4, 0), ring, number_of_leds);
       
       pixels.show();
 
-      delay(del_val*2);
+      delay(del_val);
 
-      pixels.fill(pixels.Color(0, 255, 0, 0), ring, number_of_leds);
+      pixels.fill(pixels.Color(0, 255/4, 0, 0), ring, number_of_leds);
       pixels.show();
-      delay(del_val*2);
+      delay(del_val);
 
       digitalWrite(obled, !digitalRead(obled));
       digitalWrite(redled, HIGH);
