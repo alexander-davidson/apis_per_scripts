@@ -27,7 +27,7 @@ Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ80
 int ring_button = 8;
 
 // set the value for duration of each colour
-unsigned long del_val = 7500;
+unsigned long del_val = 5000;
 
 unsigned long reward_del_val = 5000;
 
