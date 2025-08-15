@@ -100,7 +100,7 @@ void loop() {
       digitalWrite(redled, LOW);
       delay(stick_delay);
 
-      pixels.fill(pixels.Color(0, 0, 255/8), ring, number_of_leds);
+      pixels.fill(pixels.Color(0, 0, 30), ring, number_of_leds);
       // sends colour info to LEDs to be displayed
       pixels.show();
 
@@ -112,7 +112,7 @@ void loop() {
       // However, since we are using two colours, I have set the delay + reward_del_val
       // so that both colours show for the same amount of time
 
-      pixels.fill(pixels.Color(0, 0, 255/8), ring, number_of_leds);
+      pixels.fill(pixels.Color(0, 0, 30), ring, number_of_leds);
       pixels.show();
       delay(del_val);
 
@@ -140,13 +140,13 @@ void loop() {
       digitalWrite(redled, LOW);
       delay(stick_delay);
 
-      pixels.fill(pixels.Color(0, 255/8, 0), ring, number_of_leds);
+      pixels.fill(pixels.Color(0, 30, 0), ring, number_of_leds);
       
       pixels.show();
 
       delay(del_val);
 
-      pixels.fill(pixels.Color(0, 255/8, 0, 0), ring, number_of_leds);
+      pixels.fill(pixels.Color(0, 30, 0), ring, number_of_leds);
       pixels.show();
       delay(del_val);
 
@@ -214,4 +214,5 @@ void loop() {
 
   }
 }
+
 
